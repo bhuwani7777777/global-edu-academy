@@ -1,103 +1,141 @@
 import "./Home.css";
+import { motion } from "framer-motion";
+import { Typewriter } from "react-simple-typewriter";
+import Particles from "react-tsparticles";
 
 export default function Home() {
   return (
     <div className="home">
 
+      {/* PARTICLES */}
+      <Particles className="particles" />
+
       {/* HERO */}
       <section className="hero">
-        <div className="hero-content">
-          <h1>Global Educational Academy</h1>
-          <p>Modern Learning from Nursery to Class 12 in Damak, Nepal</p>
+        <motion.div
+          className="hero-content"
+          initial={{ opacity: 0, y: 60 }}
+          animate={{ opacity: 1, y: 0 }}
+        >
+          <h1 className="title">
+            <Typewriter
+              words={[
+                "Global Educational Academy",
+                "Smart Learning in Damak",
+                "Future Ready Students",
+                "Nursery to Class 12 Education"
+              ]}
+              loop
+              cursor
+            />
+          </h1>
+
+          <p className="subtitle">
+            A modern learning environment focused on innovation, discipline, and excellence in education.
+          </p>
 
           <div className="hero-buttons">
             <button className="btn">Apply Now</button>
             <button className="btn-outline">Explore Programs</button>
           </div>
-        </div>
+        </motion.div>
       </section>
 
-      {/* STATS */}
-      <section className="stats">
-        <div className="card">
-          <h2>1200+</h2>
-          <p>Students</p>
-        </div>
-        <div className="card">
-          <h2>65+</h2>
-          <p>Teachers</p>
-        </div>
-        <div className="card">
-          <h2>25+</h2>
-          <p>Smart Classes</p>
-        </div>
-        <div className="card">
-          <h2>95%</h2>
-          <p>Success Rate</p>
-        </div>
+      {/* QUICK HIGHLIGHTS */}
+      <section className="highlights">
+        {[
+          "Smart Classrooms",
+          "Experienced Teachers",
+          "Modern Labs",
+          "Safe Environment"
+        ].map((item, i) => (
+          <motion.div
+            key={i}
+            className="highlight-card"
+            whileHover={{ scale: 1.05 }}
+          >
+            {item}
+          </motion.div>
+        ))}
       </section>
 
-      {/* ABOUT */}
-      <section className="about">
-        <div className="card">
-          <h2>About Our School</h2>
+      {/* ABOUT SHORT */}
+      <section className="about-section">
+        <motion.div className="about-card">
+          <h2>About Our Academy</h2>
           <p>
-            Global Educational Academy is a modern institution in Damak providing
-            quality education from Nursery to Class 12 with smart learning systems,
-            experienced teachers, and a disciplined environment.
+            Global Educational Academy in Damak provides world-class education
+            from Nursery to Class 12 with smart learning systems, experienced teachers,
+            and a disciplined academic environment focused on student success.
           </p>
-        </div>
-
-        <div className="about-box"></div>
+        </motion.div>
       </section>
 
-      {/* PROGRAMS */}
-      <section className="section">
-        <h2 className="title">Our Programs</h2>
+      {/* WHY CHOOSE US */}
+      <section className="why">
+        <h2>Why Choose Us</h2>
 
         <div className="grid">
-          <div className="card">Nursery & Primary</div>
-          <div className="card">Lower Secondary</div>
-          <div className="card">SEE Preparation</div>
-          <div className="card">+2 Science</div>
-          <div className="card">+2 Management</div>
-          <div className="card">Extra Activities</div>
+          {[
+            "Modern Teaching Methods",
+            "Digital Learning System",
+            "Individual Student Care",
+            "Extra Curricular Activities",
+            "Safe & Friendly Campus",
+            "High Success Rate"
+          ].map((item, i) => (
+            <motion.div
+              key={i}
+              className="card"
+              whileHover={{ scale: 1.05 }}
+            >
+              {item}
+            </motion.div>
+          ))}
         </div>
       </section>
 
-      {/* PRINCIPAL */}
-      <section className="principal">
-        <div className="card">
-          <h2>Principal Message</h2>
-          <p>
-            “We aim to build disciplined, skilled, and future-ready students through
-            modern education and strong values.”
-          </p>
-          <span>- Principal, Global Educational Academy</span>
+      {/* CLASSES LEVELS */}
+      <section className="levels">
+        <h2>Academic Levels</h2>
+
+        <div className="timeline">
+          <div>Nursery</div>
+          <div>Primary</div>
+          <div>Lower Secondary</div>
+          <div>SEE Preparation</div>
+          <div>+2 Science</div>
+          <div>+2 Management</div>
         </div>
       </section>
 
-      {/* TESTIMONIALS */}
-      <section className="section">
-        <h2 className="title">What People Say</h2>
+      {/* FACILITIES */}
+      <section className="facilities">
+        <h2>Facilities</h2>
 
         <div className="grid">
-          <div className="card">
-            “Best school in Damak with modern teaching style.”
-          </div>
-          <div className="card">
-            “Teachers are very supportive and friendly.”
-          </div>
-          <div className="card">
-            “Great environment for learning and growth.”
-          </div>
+          <div className="card">Computer Lab</div>
+          <div className="card">Science Lab</div>
+          <div className="card">Library</div>
+          <div className="card">Sports Ground</div>
+        </div>
+      </section>
+
+      {/* EVENTS */}
+      <section className="events">
+        <h2>Latest Events</h2>
+
+        <div className="grid">
+          <div className="card">Annual Sports Day</div>
+          <div className="card">Science Exhibition</div>
+          <div className="card">Parent Meeting</div>
         </div>
       </section>
 
       {/* CTA */}
       <section className="cta">
         <h2>Admissions Open 2026</h2>
-        <p>Start your journey with us today</p>
+        <p>Start your journey with Global Educational Academy</p>
         <button className="btn">Apply Now</button>
       </section>
 

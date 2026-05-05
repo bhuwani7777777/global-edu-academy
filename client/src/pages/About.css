@@ -1,0 +1,149 @@
+
+/* PAGE */
+.about-page {
+  font-family: "Inter", sans-serif;
+  background: #0b1220;
+  color: white;
+}
+
+/* HERO */
+.about-hero {
+  height: 65vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: linear-gradient(135deg, #111827, #1f2937);
+  padding: 20px;
+}
+
+.hero-overlay {
+  max-width: 800px;
+}
+
+.about-hero h1 {
+  font-size: 46px;
+  margin-bottom: 10px;
+}
+
+.about-hero p {
+  opacity: 0.85;
+}
+
+/* INTRO */
+.intro-section {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+  padding: 60px 10%;
+}
+
+.intro-card {
+  background: rgba(255,255,255,0.06);
+  padding: 25px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.1);
+  backdrop-filter: blur(10px);
+}
+
+.intro-card.highlight {
+  background: linear-gradient(135deg, #4f46e5, #3b82f6);
+}
+
+/* SECTION TITLE */
+.section-title {
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: 30px;
+}
+
+/* FEATURES */
+.features {
+  padding: 60px 10%;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.feature-card {
+  background: rgba(255,255,255,0.05);
+  padding: 20px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.08);
+  transition: 0.3s;
+}
+
+.feature-card:hover {
+  transform: translateY(-8px);
+  border-color: #6366f1;
+}
+
+/* TIMELINE */
+.timeline-section {
+  padding: 60px 10%;
+}
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.timeline-item {
+  display: flex;
+  gap: 20px;
+  padding: 15px;
+  background: rgba(255,255,255,0.05);
+  border-left: 4px solid #6366f1;
+  border-radius: 10px;
+}
+
+/* CEO */
+.ceo-section {
+  padding: 80px 10%;
+}
+
+.ceo-card {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  background: rgba(255,255,255,0.05);
+  border-radius: 20px;
+  padding: 30px;
+}
+
+.ceo-image {
+  width: 170px;
+  height: 170px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #6366f1, #3b82f6);
+}
+
+.ceo-text h4 {
+  color: #60a5fa;
+  margin-top: 10px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+
+  .intro-section {
+    grid-template-columns: 1fr;
+  }
+
+  .feature-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ceo-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .about-hero h1 {
+    font-size: 30px;
+  }
+}

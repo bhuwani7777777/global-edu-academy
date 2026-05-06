@@ -1,8 +1,10 @@
 import { useState } from "react";
 import axios from "axios";
-import "../styles/admissions.css";
+import "./Admissions.css";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function Admissions() {
+  const [step, setStep] = useState(1);
   const [form, setForm] = useState({});
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -11,121 +13,147 @@ export default function Admissions() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const submit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setSuccess(false);
+  const next = () => setStep((prev) => prev + 1);
+  const prev = () => setStep((prev) => prev - 1);
 
+  const submit = async () => {
+    setLoading(true);
     try {
       await axios.post("http://localhost:5000/api/admissions", form);
       setSuccess(true);
-      setForm({});
-    } catch (err) {
-      alert("Submission failed!");
+    } catch {
+      alert("Submission failed");
     }
-
     setLoading(false);
   };
 
   return (
     <div className="admission-wrapper">
 
-      {/* LEFT INFO PANEL */}
-      <div className="admission-info">
+      {/* BACKGROUND EFFECT */}
+      <div className="bg-gradient"></div>
 
-        <h1>🎓 Admissions Open 2026</h1>
-        <p>
-          Join Global Educational Academy, Damak — from Nursery to Class 12.
-          Build your future with modern education, smart classrooms, and expert teachers.
-        </p>
+      {/* CARD */}
+      <div className="glass-card">
 
-        <div className="info-card">
-          <h3>📌 Why Choose Us?</h3>
-          <ul>
-            <li>✔ Smart Classroom Learning</li>
-            <li>✔ Experienced Teachers</li>
-            <li>✔ Science & Computer Labs</li>
-            <li>✔ Sports & Creative Activities</li>
-            <li>✔ Safe Learning Environment</li>
-          </ul>
+        {/* HEADER */}
+        <div className="header">
+          <h1>🎓 Admission 2026</h1>
+          <p>Global Educational Academy • Damak</p>
         </div>
 
-        <div className="info-card">
-          <h3>📍 Location</h3>
-          <p>Damak, Jhapa, Nepal</p>
+        {/* PROGRESS */}
+        <div className="progress">
+          <div className={`dot ${step >= 1 && "active"}`}></div>
+          <div className={`dot ${step >= 2 && "active"}`}></div>
+          <div className={`dot ${step >= 3 && "active"}`}></div>
         </div>
 
-        <div className="info-card highlight">
-          <h3>🔥 Limited Seats Available</h3>
-          <p>Apply early to secure your admission.</p>
-        </div>
+        {success ? (
+          <motion.div className="success" initial={{ scale: 0.8 }} animate={{ scale: 1 }}>
+            🎉 Admission Submitted Successfully!
+          </motion.div>
+        ) : (
 
-      </div>
+          <AnimatePresence mode="wait">
 
-      {/* RIGHT FORM PANEL */}
-      <div className="admission-form-section">
+            {/* STEP 1 */}
+            {step === 1 && (
+              <motion.div
+                key="step1"
+                initial={{ x: 50, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                exit={{ x: -50, opacity: 0 }}
+                className="form-step"
+              >
+                <h2>Student Info</h2>
 
-        <div className="form-header">
-          <h2>Student Admission Form</h2>
-          <p>Fill all required details carefully</p>
-        </div>
+                <div className="input">
+                  <input name="name" required onChange={handleChange} />
+                  <label>Full Name</label>
+                </div>
 
-        {success && (
-          <div className="success-box">
-            🎉 Application submitted successfully!
-          </div>
+                <div className="input">
+                  <input name="dob" onChange={handleChange} />
+                  <label>Date of Birth</label>
+                </div>
+
+                <div className="input">
+                  <input name="classApplied" onChange={handleChange} />
+                  <label>Applying Class</label>
+                </div>
+
+                <button onClick={next} className="primary">Next →</button>
+              </motion.div>
+            )}
+
+            {/* STEP 2 */}
+            {step === 2 && (
+              <motion.div
+                key="step2"
+                initial={{ x: 50, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                exit={{ x: -50, opacity: 0 }}
+                className="form-step"
+              >
+                <h2>Parent Info</h2>
+
+                <div className="input">
+                  <input name="fatherName" onChange={handleChange} />
+                  <label>Father Name</label>
+                </div>
+
+                <div className="input">
+                  <input name="motherName" onChange={handleChange} />
+                  <label>Mother Name</label>
+                </div>
+
+                <div className="input">
+                  <input name="guardianPhone" onChange={handleChange} />
+                  <label>Phone</label>
+                </div>
+
+                <div className="btn-row">
+                  <button onClick={prev}>← Back</button>
+                  <button onClick={next} className="primary">Next →</button>
+                </div>
+              </motion.div>
+            )}
+
+            {/* STEP 3 */}
+            {step === 3 && (
+              <motion.div
+                key="step3"
+                initial={{ x: 50, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                exit={{ x: -50, opacity: 0 }}
+                className="form-step"
+              >
+                <h2>Payment</h2>
+
+                <div className="payment">
+                  <button className="esewa">eSewa</button>
+                  <button className="khalti">Khalti</button>
+                </div>
+
+                <div className="input">
+                  <textarea name="message" onChange={handleChange}></textarea>
+                  <label>Additional Notes</label>
+                </div>
+
+                <div className="btn-row">
+                  <button onClick={prev}>← Back</button>
+                  <button onClick={submit} className="primary">
+                    {loading ? "Processing..." : "Submit ✔"}
+                  </button>
+                </div>
+              </motion.div>
+            )}
+
+          </AnimatePresence>
         )}
 
-        <form className="admission-form card" onSubmit={submit}>
-
-          {/* STUDENT INFO */}
-          <h3>👨‍🎓 Student Details</h3>
-
-          <div className="grid-2">
-            <input name="name" placeholder="Full Name" onChange={handleChange} value={form.name || ""} required />
-            <input name="dob" placeholder="Date of Birth" onChange={handleChange} value={form.dob || ""} />
-          </div>
-
-          <div className="grid-2">
-            <input name="email" placeholder="Email Address" onChange={handleChange} value={form.email || ""} />
-            <input name="phone" placeholder="Phone Number" onChange={handleChange} value={form.phone || ""} />
-          </div>
-
-          <div className="grid-2">
-            <input name="address" placeholder="Address" onChange={handleChange} value={form.address || ""} />
-            <input name="classApplied" placeholder="Applying Class" onChange={handleChange} value={form.classApplied || ""} />
-          </div>
-
-          {/* PARENT INFO */}
-          <h3>👨‍👩‍👧 Parent Details</h3>
-
-          <div className="grid-2">
-            <input name="fatherName" placeholder="Father Name" onChange={handleChange} value={form.fatherName || ""} />
-            <input name="motherName" placeholder="Mother Name" onChange={handleChange} value={form.motherName || ""} />
-          </div>
-
-          <div className="grid-2">
-            <input name="guardianPhone" placeholder="Guardian Phone" onChange={handleChange} value={form.guardianPhone || ""} />
-            <input name="occupation" placeholder="Parent Occupation" onChange={handleChange} value={form.occupation || ""} />
-          </div>
-
-          {/* EXTRA */}
-          <h3>📌 Additional Information</h3>
-
-          <textarea
-            name="message"
-            placeholder="Write any special notes or requirements..."
-            onChange={handleChange}
-            value={form.message || ""}
-          ></textarea>
-
-          <button className="btn full-btn" disabled={loading}>
-            {loading ? "Submitting..." : "Submit Application"}
-          </button>
-
-        </form>
       </div>
-
     </div>
   );
 }

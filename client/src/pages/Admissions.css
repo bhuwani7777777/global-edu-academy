@@ -1,0 +1,140 @@
+/* BACKGROUND */
+.admission-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #020617;
+  position: relative;
+  overflow: hidden;
+}
+
+/* GRADIENT GLOW */
+.bg-gradient {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, #6366f1, transparent);
+  filter: blur(120px);
+  opacity: 0.4;
+}
+
+/* GLASS CARD */
+.glass-card {
+  position: relative;
+  width: 420px;
+  padding: 30px;
+  border-radius: 20px;
+  backdrop-filter: blur(25px);
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: white;
+}
+
+/* HEADER */
+.header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* PROGRESS */
+.progress {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  background: #334155;
+  border-radius: 50%;
+}
+
+.dot.active {
+  background: #6366f1;
+}
+
+/* FORM */
+.form-step {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* INPUT FLOAT */
+.input {
+  position: relative;
+}
+
+.input input,
+.input textarea {
+  width: 100%;
+  padding: 12px;
+  background: transparent;
+  border: 1px solid #334155;
+  border-radius: 10px;
+  color: white;
+}
+
+.input label {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  transform: translateY(-50%);
+  font-size: 14px;
+  color: #94a3b8;
+  transition: 0.3s;
+}
+
+.input input:focus + label,
+.input input:not(:placeholder-shown) + label,
+.input textarea:focus + label {
+  top: -8px;
+  font-size: 12px;
+  background: #020617;
+  padding: 0 5px;
+}
+
+/* BUTTONS */
+button {
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.primary {
+  background: linear-gradient(90deg, #38bdf8, #6366f1);
+  color: white;
+}
+
+.btn-row {
+  display: flex;
+  gap: 10px;
+}
+
+/* PAYMENT */
+.payment {
+  display: flex;
+  gap: 10px;
+}
+
+.esewa {
+  flex: 1;
+  background: green;
+}
+
+.khalti {
+  flex: 1;
+  background: purple;
+}
+
+/* SUCCESS */
+.success {
+  text-align: center;
+  padding: 20px;
+  background: #16a34a;
+  border-radius: 10px;
+}

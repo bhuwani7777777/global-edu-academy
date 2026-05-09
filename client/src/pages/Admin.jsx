@@ -1,35 +1,126 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
+import "./Admin.css";
 
 export default function Admin() {
-  const [data, setData] = useState([]);
+  const [students, setStudents] = useState([]);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
-    axios.get("http://localhost:5000/api/admissions")
-      .then(res => setData(res.data))
+    axios.get("http://localhost:5000/api/students")
+      .then(res => setStudents(res.data))
       .catch(err => console.log(err));
   }, []);
 
+  const filtered = students.filter(
+    (s) =>
+      s.name?.toLowerCase().includes(search.toLowerCase()) ||
+      s.className?.toLowerCase().includes(search.toLowerCase()) ||
+      s.email?.toLowerCase().includes(search.toLowerCase())
+  );
+
   return (
-    <div className="section container">
+    <div className="admin-layout">
 
-      <h1>Admin Dashboard</h1>
+      {/* SIDEBAR */}
+      <aside className="sidebar">
 
-      {data.length === 0 && <p>No admissions found</p>}
+        <div className="brand">
+          🎓 <span>Global Academy</span>
+        </div>
 
-      <div className="grid">
+        <nav>
+          <a className="active">Dashboard</a>
+          <a href="/admin/students">Students</a>
+          <a href="/admin/teachers">Teachers</a>
+          <a href="/admin/admissions">Admissions</a>
+          <a href="/admin/payments">Payments</a>
+          <a href="/admin/settings">Settings</a>
+        </nav>
 
-        {data.map((d) => (
-          <div className="card" key={d._id}>
-            <h3>{d.name}</h3>
-            <p>Email: {d.email}</p>
-            <p>Phone: {d.phone}</p>
-            <p>Class: {d.classApplied}</p>
-            <p>Status: {d.status}</p>
+      </aside>
+
+      {/* MAIN CONTENT */}
+      <main className="main">
+
+        {/* TOP BAR */}
+        <div className="topbar">
+
+          <div>
+            <h1>Admin Dashboard</h1>
+            <p>Manage your school system efficiently</p>
           </div>
-        ))}
 
-      </div>
+          <input
+            type="text"
+            placeholder="Search students..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+
+        </div>
+
+        {/* STATS */}
+        <div className="stats">
+
+          <div className="stat-card">
+            <h2>{students.length}</h2>
+            <p>Total Students</p>
+          </div>
+
+          <div className="stat-card">
+            <h2>25</h2>
+            <p>Teachers</p>
+          </div>
+
+          <div className="stat-card">
+            <h2>15</h2>
+            <p>Classes</p>
+          </div>
+
+          <div className="stat-card">
+            <h2>92%</h2>
+            <p>Attendance</p>
+          </div>
+
+        </div>
+
+        {/* TABLE */}
+        <div className="table-container">
+
+          <h2>Recent Students</h2>
+
+          <table>
+
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Class</th>
+                <th>Age</th>
+                <th>Email</th>
+              </tr>
+            </thead>
+
+            <tbody>
+
+              {filtered.map((s, i) => (
+                <tr key={i}>
+                  <td>{i + 1}</td>
+                  <td>{s.name}</td>
+                  <td>{s.className}</td>
+                  <td>{s.age}</td>
+                  <td>{s.email}</td>
+                </tr>
+              ))}
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </main>
 
     </div>
   );

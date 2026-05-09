@@ -1,0 +1,413 @@
+/* =========================================
+   PREMIUM SCHOOL ADMIN DASHBOARD
+========================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:'Poppins',sans-serif;
+  background:#020617;
+  overflow-x:hidden;
+}
+
+/* =========================================
+   MAIN LAYOUT
+========================================= */
+
+.admin-dashboard{
+  display:flex;
+  min-height:100vh;
+
+  background:
+    linear-gradient(
+      135deg,
+      #020617,
+      #0f172a,
+      #111827
+    );
+
+  color:white;
+}
+
+/* =========================================
+   SIDEBAR
+========================================= */
+
+.sidebar{
+  width:280px;
+  min-height:100vh;
+
+  background:rgba(255,255,255,0.05);
+
+  border-right:1px solid rgba(255,255,255,0.08);
+
+  backdrop-filter:blur(14px);
+
+  padding:30px 22px;
+
+  position:sticky;
+  top:0;
+}
+
+/* LOGO */
+
+.logo-section{
+  display:flex;
+  align-items:center;
+  gap:14px;
+
+  margin-bottom:50px;
+}
+
+.logo-circle{
+  width:60px;
+  height:60px;
+
+  border-radius:18px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  font-size:1.7rem;
+
+  background:
+    linear-gradient(
+      135deg,
+      #0ea5e9,
+      #2563eb
+    );
+
+  box-shadow:
+    0 10px 25px rgba(37,99,235,0.35);
+}
+
+.logo-section h2{
+  font-size:1.2rem;
+  margin-bottom:3px;
+}
+
+.logo-section p{
+  color:#94a3b8;
+  font-size:0.85rem;
+}
+
+/* MENU */
+
+.menu{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+
+.menu a{
+  text-decoration:none;
+
+  padding:16px 18px;
+
+  border-radius:16px;
+
+  color:#cbd5e1;
+
+  transition:0.4s ease;
+
+  font-weight:500;
+}
+
+.menu a:hover,
+.menu .active{
+  background:
+    linear-gradient(
+      135deg,
+      rgba(14,165,233,0.2),
+      rgba(37,99,235,0.2)
+    );
+
+  color:white;
+
+  transform:translateX(5px);
+}
+
+/* =========================================
+   MAIN CONTENT
+========================================= */
+
+.main-content{
+  flex:1;
+  padding:35px;
+}
+
+/* =========================================
+   TOPBAR
+========================================= */
+
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
+
+  margin-bottom:35px;
+}
+
+.topbar h1{
+  font-size:2.3rem;
+  font-weight:700;
+
+  margin-bottom:6px;
+}
+
+.topbar p{
+  color:#94a3b8;
+}
+
+/* SEARCH + BUTTON */
+
+.top-actions{
+  display:flex;
+  gap:15px;
+  align-items:center;
+}
+
+.top-actions input{
+  padding:14px 18px;
+
+  width:260px;
+
+  border:none;
+  outline:none;
+
+  border-radius:14px;
+
+  background:rgba(255,255,255,0.05);
+
+  border:1px solid rgba(255,255,255,0.08);
+
+  color:white;
+}
+
+.top-actions input::placeholder{
+  color:#94a3b8;
+}
+
+.top-actions button{
+  padding:14px 22px;
+
+  border:none;
+  border-radius:14px;
+
+  cursor:pointer;
+
+  font-weight:600;
+  color:white;
+
+  background:
+    linear-gradient(
+      135deg,
+      #0ea5e9,
+      #2563eb
+    );
+
+  box-shadow:
+    0 10px 25px rgba(37,99,235,0.35);
+
+  transition:0.4s ease;
+}
+
+.top-actions button:hover{
+  transform:translateY(-4px);
+}
+
+/* =========================================
+   STATS
+========================================= */
+
+.stats-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:24px;
+
+  margin-bottom:35px;
+}
+
+.stat-card{
+  padding:30px;
+
+  border-radius:24px;
+
+  background:rgba(255,255,255,0.05);
+
+  border:1px solid rgba(255,255,255,0.08);
+
+  backdrop-filter:blur(14px);
+
+  transition:0.4s ease;
+}
+
+.stat-card:hover{
+  transform:translateY(-8px);
+
+  background:rgba(56,189,248,0.08);
+}
+
+.stat-card h3{
+  font-size:2.4rem;
+  margin-bottom:10px;
+
+  color:#38bdf8;
+}
+
+.stat-card p{
+  color:#cbd5e1;
+}
+
+/* =========================================
+   TABLE CARD
+========================================= */
+
+.table-card{
+  background:rgba(255,255,255,0.05);
+
+  border:1px solid rgba(255,255,255,0.08);
+
+  border-radius:28px;
+
+  overflow:hidden;
+
+  backdrop-filter:blur(14px);
+
+  box-shadow:
+    0 15px 35px rgba(0,0,0,0.25);
+}
+
+.table-header{
+  padding:25px 30px;
+
+  border-bottom:1px solid rgba(255,255,255,0.08);
+}
+
+.table-header h2{
+  font-size:1.5rem;
+}
+
+/* TABLE */
+
+.table-wrapper{
+  overflow-x:auto;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+}
+
+thead{
+  background:rgba(255,255,255,0.04);
+}
+
+th{
+  padding:20px;
+
+  text-align:left;
+
+  color:#38bdf8;
+
+  font-weight:600;
+}
+
+td{
+  padding:18px 20px;
+
+  border-top:1px solid rgba(255,255,255,0.06);
+
+  color:#e2e8f0;
+}
+
+tbody tr{
+  transition:0.3s ease;
+}
+
+tbody tr:hover{
+  background:rgba(56,189,248,0.05);
+}
+
+/* STATUS */
+
+.status{
+  padding:7px 14px;
+
+  border-radius:30px;
+
+  font-size:0.85rem;
+  font-weight:600;
+}
+
+.active-status{
+  background:rgba(34,197,94,0.15);
+  color:#4ade80;
+}
+
+/* NO DATA */
+
+.no-data{
+  text-align:center;
+  padding:30px;
+
+  color:#94a3b8;
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media(max-width:992px){
+
+  .sidebar{
+    display:none;
+  }
+
+  .main-content{
+    width:100%;
+  }
+
+  .topbar{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
+  .top-actions{
+    width:100%;
+    flex-direction:column;
+    align-items:stretch;
+  }
+
+  .top-actions input{
+    width:100%;
+  }
+}
+
+@media(max-width:768px){
+
+  .main-content{
+    padding:25px 15px;
+  }
+
+  .topbar h1{
+    font-size:1.9rem;
+  }
+
+  .stat-card h3{
+    font-size:2rem;
+  }
+
+  th,
+  td{
+    padding:15px;
+  }
+}

@@ -1,0 +1,126 @@
+/* =========================================
+   PREMIUM SCHOOL FOOTER
+========================================= */
+
+.footer{
+  width:100%;
+  background:
+    linear-gradient(
+      135deg,
+      #020617,
+      #0f172a,
+      #111827
+    );
+
+  color:#cbd5e1;
+
+  margin-top:100px;
+
+  border-top:1px solid rgba(255,255,255,0.08);
+}
+
+/* CONTAINER */
+
+.footer-container{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:40px;
+
+  padding:70px 8%;
+}
+
+/* BOX */
+
+.footer-box h2{
+  color:#38bdf8;
+  font-size:1.4rem;
+
+  margin-bottom:15px;
+}
+
+.footer-box h3{
+  color:white;
+  font-size:1.1rem;
+
+  margin-bottom:15px;
+}
+
+.footer-box p{
+  line-height:1.8;
+  font-size:0.95rem;
+}
+
+/* LINKS */
+
+.footer-box ul{
+  list-style:none;
+}
+
+.footer-box ul li{
+  margin-bottom:10px;
+}
+
+.footer-box ul li a{
+  text-decoration:none;
+  color:#cbd5e1;
+
+  transition:0.3s ease;
+}
+
+.footer-box ul li a:hover{
+  color:#38bdf8;
+  padding-left:6px;
+}
+
+/* SOCIAL */
+
+.socials{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.socials a{
+  text-decoration:none;
+
+  color:#cbd5e1;
+
+  padding:8px 12px;
+
+  border-radius:10px;
+
+  background:rgba(255,255,255,0.05);
+
+  border:1px solid rgba(255,255,255,0.08);
+
+  transition:0.4s ease;
+}
+
+.socials a:hover{
+  background:rgba(56,189,248,0.15);
+  color:#38bdf8;
+
+  transform:translateX(5px);
+}
+
+/* BOTTOM */
+
+.footer-bottom{
+  text-align:center;
+
+  padding:20px;
+
+  border-top:1px solid rgba(255,255,255,0.08);
+
+  font-size:0.9rem;
+
+  color:#94a3b8;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:768px){
+  .footer-container{
+    padding:50px 6%;
+  }
+}

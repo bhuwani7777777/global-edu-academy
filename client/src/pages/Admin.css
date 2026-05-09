@@ -1,0 +1,213 @@
+/* =========================================
+   SCHOOL ADMIN ERP DESIGN
+========================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:'Poppins',sans-serif;
+  background:#0f172a;
+  color:white;
+}
+
+/* LAYOUT */
+.admin-layout{
+  display:flex;
+  min-height:100vh;
+}
+
+/* SIDEBAR */
+.sidebar{
+  width:260px;
+  background:rgba(255,255,255,0.05);
+  backdrop-filter:blur(15px);
+
+  border-right:1px solid rgba(255,255,255,0.08);
+
+  padding:25px;
+}
+
+/* BRAND */
+.brand{
+  font-size:1.4rem;
+  font-weight:600;
+
+  margin-bottom:30px;
+
+  color:#38bdf8;
+}
+
+.brand span{
+  margin-left:8px;
+}
+
+/* NAV */
+.sidebar nav{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.sidebar nav a{
+  text-decoration:none;
+
+  padding:12px 15px;
+
+  border-radius:10px;
+
+  color:#cbd5e1;
+
+  transition:0.3s ease;
+}
+
+.sidebar nav a:hover,
+.sidebar nav .active{
+  background:rgba(56,189,248,0.15);
+  color:#38bdf8;
+  transform:translateX(5px);
+}
+
+/* MAIN */
+.main{
+  flex:1;
+  padding:30px;
+}
+
+/* TOPBAR */
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  margin-bottom:30px;
+}
+
+.topbar h1{
+  font-size:2rem;
+}
+
+.topbar p{
+  color:#94a3b8;
+}
+
+.topbar input{
+  padding:12px 15px;
+
+  width:220px;
+
+  border:none;
+  outline:none;
+
+  border-radius:10px;
+
+  background:rgba(255,255,255,0.05);
+
+  color:white;
+}
+
+/* STATS */
+.stats{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:20px;
+
+  margin-bottom:30px;
+}
+
+.stat-card{
+  padding:25px;
+
+  border-radius:18px;
+
+  background:rgba(255,255,255,0.05);
+
+  border:1px solid rgba(255,255,255,0.08);
+
+  backdrop-filter:blur(12px);
+
+  transition:0.3s ease;
+}
+
+.stat-card:hover{
+  transform:translateY(-6px);
+  background:rgba(56,189,248,0.12);
+}
+
+.stat-card h2{
+  font-size:2rem;
+  color:#38bdf8;
+}
+
+/* TABLE */
+.table-container{
+  background:rgba(255,255,255,0.05);
+
+  border:1px solid rgba(255,255,255,0.08);
+
+  border-radius:20px;
+
+  padding:20px;
+
+  backdrop-filter:blur(12px);
+}
+
+.table-container h2{
+  margin-bottom:15px;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+}
+
+th,td{
+  padding:12px;
+
+  border-bottom:1px solid rgba(255,255,255,0.08);
+
+  text-align:left;
+}
+
+th{
+  color:#38bdf8;
+}
+
+tr:hover{
+  background:rgba(56,189,248,0.08);
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+
+  .admin-layout{
+    flex-direction:column;
+  }
+
+  .sidebar{
+    width:100%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+  }
+
+  .sidebar nav{
+    flex-direction:row;
+    flex-wrap:wrap;
+  }
+
+  .topbar{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:10px;
+  }
+
+  .topbar input{
+    width:100%;
+  }
+}

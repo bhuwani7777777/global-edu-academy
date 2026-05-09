@@ -1,8 +1,8 @@
 /* =========================================
-   GLOBAL SCHOOL SYSTEM THEME
+   GLOBAL SCHOOL ERP THEME (FINAL)
 ========================================= */
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 *{
   margin:0;
@@ -14,12 +14,9 @@ body{
   font-family:'Poppins',sans-serif;
 
   background:
-    linear-gradient(
-      135deg,
-      #020617,
-      #0f172a,
-      #111827
-    );
+    radial-gradient(circle at top left, #0ea5e9 0%, transparent 30%),
+    radial-gradient(circle at bottom right, #6366f1 0%, transparent 30%),
+    linear-gradient(135deg, #020617, #0f172a, #111827);
 
   color:white;
 
@@ -27,56 +24,70 @@ body{
 }
 
 /* APP WRAPPER */
-.app-container{
+.app-wrapper{
   min-height:100vh;
   padding-top:80px;
+  padding-bottom:40px;
 }
 
 /* =========================================
-   NOT FOUND PAGE
+   404 PAGE
 ========================================= */
 
-.notfound{
+.notfound-page{
   display:flex;
-  flex-direction:column;
   align-items:center;
   justify-content:center;
 
   min-height:80vh;
 
-  text-align:center;
+  padding:40px;
 }
 
-.notfound h1{
+.notfound-card{
+  text-align:center;
+
+  padding:60px 40px;
+
+  border-radius:25px;
+
+  background:rgba(255,255,255,0.05);
+
+  border:1px solid rgba(255,255,255,0.08);
+
+  backdrop-filter:blur(15px);
+
+  box-shadow:0 20px 40px rgba(0,0,0,0.4);
+}
+
+.notfound-card h1{
   font-size:6rem;
   color:#38bdf8;
 }
 
-.notfound p{
+.notfound-card h2{
+  margin:10px 0;
+}
+
+.notfound-card p{
   color:#94a3b8;
-  font-size:1.2rem;
 }
 
 /* =========================================
-   COMMON BUTTON STYLE
-========================================= */
-
-button{
-  font-family:'Poppins',sans-serif;
-}
-
-/* =========================================
-   COMMON CARD EFFECT
+   GLOBAL UI ELEMENTS
 ========================================= */
 
 .card,
 .stat-card,
-.table-box,
+.table-container,
 .settings-card{
-  backdrop-filter:blur(12px);
   background:rgba(255,255,255,0.05);
 
   border:1px solid rgba(255,255,255,0.08);
+
+  backdrop-filter:blur(14px);
+
+  border-radius:18px;
 
   transition:0.3s ease;
 }
@@ -85,12 +96,64 @@ button{
   transform:translateY(-5px);
 }
 
-/* =========================================
-   GLOBAL INPUT STYLE
-========================================= */
-
+/* INPUTS */
 input, textarea{
   font-family:'Poppins',sans-serif;
+
+  background:rgba(255,255,255,0.05);
+
+  border:none;
+  outline:none;
+
+  color:white;
+
+  padding:12px 14px;
+
+  border-radius:10px;
+}
+
+/* BUTTON */
+button{
+  font-family:'Poppins',sans-serif;
+  cursor:pointer;
+  transition:0.3s ease;
+}
+
+button:hover{
+  transform:translateY(-3px);
+}
+
+/* =========================================
+   WHATSAPP FLOAT BUTTON (GLOBAL)
+========================================= */
+
+.whatsapp-float{
+  position:fixed;
+  bottom:25px;
+  right:25px;
+
+  width:60px;
+  height:60px;
+
+  background:#25D366;
+
+  border-radius:50%;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  z-index:9999;
+
+  box-shadow:0 10px 25px rgba(0,0,0,0.3);
+
+  cursor:pointer;
+
+  transition:0.3s ease;
+}
+
+.whatsapp-float:hover{
+  transform:scale(1.1);
 }
 
 /* =========================================
@@ -106,21 +169,21 @@ input, textarea{
 }
 
 ::-webkit-scrollbar-thumb{
-  background:linear-gradient(#38bdf8,#2563eb);
+  background:linear-gradient(#38bdf8,#6366f1);
   border-radius:20px;
 }
 
 /* =========================================
-   RESPONSIVE BASE
+   RESPONSIVE
 ========================================= */
 
 @media(max-width:768px){
 
-  .app-container{
-    padding-top:70px;
+  .notfound-card h1{
+    font-size:4rem;
   }
 
-  .notfound h1{
-    font-size:4rem;
+  .app-wrapper{
+    padding-top:70px;
   }
 }

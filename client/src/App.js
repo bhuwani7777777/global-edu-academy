@@ -2,8 +2,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import WhatsAppButton from "./components/WhatsAppButton";
 
-/* PUBLIC PAGES */
+/* PAGES */
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Academics from "./pages/Academics";
@@ -13,15 +14,14 @@ import Notices from "./pages/Notices";
 import Gallery from "./pages/Gallery";
 import Contact from "./pages/Contact";
 
-/* ADMIN PAGES */
+/* ADMIN */
 import Admin from "./pages/Admin";
 import Students from "./pages/Students";
 import Teachers from "./pages/Teachers";
-import AdmissionsAdmin from "./pages/Admissions";
 import Payments from "./pages/Payments";
 import Settings from "./pages/Settings";
 
-/* 404 PAGE */
+/* 404 */
 function NotFound() {
   return (
     <div className="notfound-page">
@@ -41,8 +41,8 @@ export default function App() {
       {/* NAVBAR */}
       <Navbar />
 
-      {/* MAIN WRAPPER */}
-      <main className="app-main">
+      {/* MAIN APP WRAPPER */}
+      <div className="app-wrapper">
 
         <Routes>
 
@@ -56,11 +56,10 @@ export default function App() {
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/contact" element={<Contact />} />
 
-          {/* ADMIN ROUTES */}
+          {/* ADMIN */}
           <Route path="/admin" element={<Admin />} />
           <Route path="/admin/students" element={<Students />} />
           <Route path="/admin/teachers" element={<Teachers />} />
-          <Route path="/admin/admissions" element={<AdmissionsAdmin />} />
           <Route path="/admin/payments" element={<Payments />} />
           <Route path="/admin/settings" element={<Settings />} />
 
@@ -69,10 +68,13 @@ export default function App() {
 
         </Routes>
 
-      </main>
+      </div>
 
       {/* FOOTER */}
       <Footer />
+
+      {/* GLOBAL WHATSAPP BUTTON */}
+      <WhatsAppButton />
 
     </BrowserRouter>
   );

@@ -26,6 +26,7 @@ export default function Register() {
     email: "",
     phone: "",
     password: "",
+    role: "student", // ✅ DEFAULT ROLE ADDED
   });
 
   const handleChange = (e) => {
@@ -41,21 +42,28 @@ export default function Register() {
 
     try {
       const response = await axios.post(
-        "https://your-vercel-app.vercel.app/api/register",
+        "https://your-vercel-app.vercel.app/api/auth/register",
         formData
       );
 
-      // backend response
       const data = response.data;
+
+      if (!data) {
+        alert("Registration failed ❌");
+        return;
+      }
 
       alert(data.message || "Registration Successful ✔");
 
-      // redirect to login
       navigate("/login");
 
     } catch (err) {
-      console.log(err);
-      alert("Registration Failed ❌");
+      console.log(err.response?.data || err.message);
+
+      alert(
+        err.response?.data?.message ||
+          "Registration Failed ❌ Check backend"
+      );
     }
 
     setLoading(false);
@@ -64,7 +72,7 @@ export default function Register() {
   return (
     <div className="auth-container">
 
-      {/* LEFT */}
+      {/* LEFT SIDE */}
       <div className="auth-left">
         <div className="overlay"></div>
 
@@ -78,14 +86,12 @@ export default function Register() {
         </div>
       </div>
 
-      {/* RIGHT */}
+      {/* RIGHT SIDE */}
       <div className="auth-right">
         <form className="auth-card" onSubmit={handleSubmit}>
 
-          <div className="auth-header">
-            <h2>Create Account ✨</h2>
-            <p>Register to continue</p>
-          </div>
+          <h2>Create Account ✨</h2>
+          <p>Register to continue</p>
 
           {/* NAME */}
           <div className="input-group">
@@ -145,6 +151,18 @@ export default function Register() {
             >
               {showPassword ? <FaEyeSlash /> : <FaEye />}
             </span>
+          </div>
+
+          {/* ROLE (optional but useful for admin system) */}
+          <div className="input-group">
+            <select
+              name="role"
+              value={formData.role}
+              onChange={handleChange}
+            >
+              <option value="student">Student</option>
+              <option value="teacher">Teacher</option>
+            </select>
           </div>
 
           {/* BUTTON */}

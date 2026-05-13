@@ -38,32 +38,40 @@ export default function Login() {
 
     try {
       const response = await axios.post(
-        "https://your-vercel-app.vercel.app/api/login",
+        "https://your-vercel-app.vercel.app/api/auth/login",
         formData
       );
 
       const data = response.data;
 
-      // ✅ SAVE TOKEN
+      if (!data || !data.token) {
+        alert("Login failed ❌ No token received");
+        setLoading(false);
+        return;
+      }
+
+      // SAVE TOKEN
       localStorage.setItem("token", data.token);
 
-      // ✅ SAVE ROLE (IMPORTANT FOR ROLE LOGIN)
-      localStorage.setItem("role", data.user.role);
+      // SAVE ROLE (safe check)
+      localStorage.setItem("role", data.user?.role || "student");
 
       alert("Login Successful ✔");
 
-      // ✅ ROLE BASED REDIRECT
-      if (data.user.role === "admin") {
+      // ROLE BASED ROUTING
+      const role = data.user?.role;
+
+      if (role === "admin") {
         navigate("/admindashboard");
-      } else if (data.user.role === "teacher") {
+      } else if (role === "teacher") {
         navigate("/teacher");
       } else {
         navigate("/student");
       }
 
     } catch (err) {
-      console.log(err);
-      alert("Invalid Email or Password");
+      console.log(err.response?.data || err.message);
+      alert(err.response?.data?.message || "Invalid Email or Password ❌");
     }
 
     setLoading(false);
@@ -88,6 +96,7 @@ export default function Login() {
 
       {/* RIGHT */}
       <div className="auth-right">
+
         <form className="auth-card" onSubmit={handleSubmit}>
 
           <div className="auth-header">
@@ -136,16 +145,10 @@ export default function Login() {
 
           {/* BUTTON */}
           <button className="auth-btn" type="submit">
-            {loading ? (
-              "Logging In..."
-            ) : (
-              <>
-                Login <FaArrowRight />
-              </>
-            )}
+            {loading ? "Logging In..." : <>Login <FaArrowRight /></>}
           </button>
 
-          {/* REGISTER LINK */}
+          {/* REGISTER */}
           <div className="bottom-text">
             Don't have an account?
             <Link to="/register"> Register</Link>

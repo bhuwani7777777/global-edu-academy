@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const MONGO_URI = process.env.MONGO_URI;
 
 if (!MONGO_URI) {
-  throw new Error("Missing MONGO_URI");
+  throw new Error("❌ MONGO_URI missing in environment variables");
 }
 
 let cached = global.mongoose;
@@ -15,6 +15,12 @@ if (!cached) {
 export async function connectDB() {
   if (cached.conn) return cached.conn;
 
-  cached.conn = await mongoose.connect(MONGO_URI);
-  return cached.conn;
+  try {
+    cached.conn = await mongoose.connect(MONGO_URI);
+    console.log("✅ MongoDB Connected");
+    return cached.conn;
+  } catch (err) {
+    console.error("MongoDB Error:", err);
+    throw err;
+  }
 }

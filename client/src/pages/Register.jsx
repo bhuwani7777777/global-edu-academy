@@ -26,7 +26,7 @@ export default function Register() {
     email: "",
     phone: "",
     password: "",
-    role: "student", // ✅ DEFAULT ROLE ADDED
+    role: "student",
   });
 
   const handleChange = (e) => {
@@ -41,28 +41,27 @@ export default function Register() {
     setLoading(true);
 
     try {
-      const response = await axios.post(
-        "https://your-vercel-app.vercel.app/api/auth/register",
+      const res = await axios.post(
+        "https://your-vercel-app.vercel.app/api/register",
         formData
       );
 
-      const data = response.data;
+      const data = res.data;
 
-      if (!data) {
-        alert("Registration failed ❌");
+      if (!data.success) {
+        alert(data.message || "Registration failed");
+        setLoading(false);
         return;
       }
 
-      alert(data.message || "Registration Successful ✔");
+      alert("Registration Successful ✔");
 
       navigate("/login");
 
     } catch (err) {
-      console.log(err.response?.data || err.message);
-
+      console.log(err);
       alert(
-        err.response?.data?.message ||
-          "Registration Failed ❌ Check backend"
+        err.response?.data?.message || "Registration failed"
       );
     }
 
@@ -88,10 +87,13 @@ export default function Register() {
 
       {/* RIGHT SIDE */}
       <div className="auth-right">
+
         <form className="auth-card" onSubmit={handleSubmit}>
 
-          <h2>Create Account ✨</h2>
-          <p>Register to continue</p>
+          <div className="auth-header">
+            <h2>Create Account ✨</h2>
+            <p>Register to continue</p>
+          </div>
 
           {/* NAME */}
           <div className="input-group">
@@ -153,7 +155,7 @@ export default function Register() {
             </span>
           </div>
 
-          {/* ROLE (optional but useful for admin system) */}
+          {/* ROLE */}
           <div className="input-group">
             <select
               name="role"
@@ -167,24 +169,22 @@ export default function Register() {
 
           {/* BUTTON */}
           <button className="auth-btn" type="submit">
-            {loading ? (
-              "Creating..."
-            ) : (
+            {loading ? "Creating..." : (
               <>
                 Register <FaArrowRight />
               </>
             )}
           </button>
 
-          {/* LOGIN LINK */}
+          {/* LINK */}
           <div className="bottom-text">
             Already have an account?
             <Link to="/login"> Login</Link>
           </div>
 
         </form>
-      </div>
 
+      </div>
     </div>
   );
 }

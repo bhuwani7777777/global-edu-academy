@@ -37,41 +37,39 @@ export default function Login() {
     setLoading(true);
 
     try {
-      const response = await axios.post(
-        "https://your-vercel-app.vercel.app/api/auth/login",
+      const res = await axios.post(
+        "https://your-vercel-app.vercel.app/api/login",
         formData
       );
 
-      const data = response.data;
+      const data = res.data;
 
-      if (!data || !data.token) {
-        alert("Login failed ❌ No token received");
+      if (!data.success) {
+        alert(data.message || "Login failed");
         setLoading(false);
         return;
       }
 
-      // SAVE TOKEN
+      // Save token & role
       localStorage.setItem("token", data.token);
-
-      // SAVE ROLE (safe check)
-      localStorage.setItem("role", data.user?.role || "student");
+      localStorage.setItem("role", data.user.role);
 
       alert("Login Successful ✔");
 
-      // ROLE BASED ROUTING
-      const role = data.user?.role;
-
-      if (role === "admin") {
+      // Role-based redirect
+      if (data.user.role === "admin") {
         navigate("/admindashboard");
-      } else if (role === "teacher") {
+      } else if (data.user.role === "teacher") {
         navigate("/teacher");
       } else {
         navigate("/student");
       }
 
     } catch (err) {
-      console.log(err.response?.data || err.message);
-      alert(err.response?.data?.message || "Invalid Email or Password ❌");
+      console.log(err);
+      alert(
+        err.response?.data?.message || "Invalid email or password"
+      );
     }
 
     setLoading(false);
@@ -80,7 +78,7 @@ export default function Login() {
   return (
     <div className="auth-container">
 
-      {/* LEFT */}
+      {/* LEFT SIDE */}
       <div className="auth-left">
         <div className="overlay"></div>
 
@@ -90,11 +88,11 @@ export default function Login() {
           </div>
 
           <h1>Global Academy</h1>
-          <p>Modern School Management System</p>
+          <p>Smart School Management System</p>
         </div>
       </div>
 
-      {/* RIGHT */}
+      {/* RIGHT SIDE */}
       <div className="auth-right">
 
         <form className="auth-card" onSubmit={handleSubmit}>
@@ -145,18 +143,22 @@ export default function Login() {
 
           {/* BUTTON */}
           <button className="auth-btn" type="submit">
-            {loading ? "Logging In..." : <>Login <FaArrowRight /></>}
+            {loading ? "Logging in..." : (
+              <>
+                Login <FaArrowRight />
+              </>
+            )}
           </button>
 
-          {/* REGISTER */}
+          {/* LINK */}
           <div className="bottom-text">
             Don't have an account?
             <Link to="/register"> Register</Link>
           </div>
 
         </form>
-      </div>
 
+      </div>
     </div>
   );
 }

@@ -1,51 +1,191 @@
-import React, { useState } from "react";
-import { NavLink, Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import {
+  NavLink,
+  Link,
+  useLocation,
+} from "react-router-dom";
+
+import {
+  FaBars,
+  FaTimes,
+  FaGraduationCap,
+  FaUserShield,
+  FaPhoneAlt,
+} from "react-icons/fa";
+
 import "./Navbar.css";
 
 import logo from "../assets/logo.png";
 
 export default function Navbar() {
+
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const closeMenu = () => setMenuOpen(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  const location = useLocation();
+
+  const closeMenu = () => {
+    setMenuOpen(false);
+  };
+
+  /* SCROLL EFFECT */
+  useEffect(() => {
+
+    const handleScroll = () => {
+
+      if (window.scrollY > 40) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+
+    };
+
+    window.addEventListener(
+      "scroll",
+      handleScroll
+    );
+
+    return () =>
+      window.removeEventListener(
+        "scroll",
+        handleScroll
+      );
+
+  }, []);
+
+  /* CLOSE MOBILE MENU */
+  useEffect(() => {
+
+    setMenuOpen(false);
+
+  }, [location]);
 
   return (
-    <header className="navbar">
 
-      {/* LOGO (CLICK → HOME) */}
-      <Link to="/" className="logo" onClick={closeMenu}>
+    <header
+      className={`navbar ${
+        scrolled ? "scrolled" : ""
+      }`}
+    >
 
-        <img src={logo} alt="Global Educational Academy" />
+      {/* TOPBAR */}
+      <div className="topbar">
 
-        <div className="logo-text">
-          <h1>Global Educational</h1>
-          <span>Academy</span>
+        <div className="topbar-left">
+
+          <span>
+            <FaGraduationCap />
+            Excellence In Education
+          </span>
+
         </div>
 
-      </Link>
+        <div className="topbar-right">
 
-      {/* NAV LINKS */}
-      <nav className={`nav-links ${menuOpen ? "active" : ""}`}>
+          <span>
+            <FaPhoneAlt />
+            +977-98XXXXXXXX
+          </span>
 
-        <NavLink to="/" onClick={closeMenu}>Home</NavLink>
-        <NavLink to="/about" onClick={closeMenu}>About</NavLink>
-        <NavLink to="/academics" onClick={closeMenu}>Academics</NavLink>
-        <NavLink to="/classes" onClick={closeMenu}>Classes</NavLink>
-        <NavLink to="/admissions" onClick={closeMenu}>Admissions</NavLink>
-        <NavLink to="/gallery" onClick={closeMenu}>Gallery</NavLink>
-        <NavLink to="/contact" onClick={closeMenu}>Contact</NavLink>
+        </div>
 
-        <NavLink to="/admin" className="admin-btn" onClick={closeMenu}>
-          Admin Panel
-        </NavLink>
+      </div>
 
-      </nav>
+      {/* MAIN NAVBAR */}
+      <div className="navbar-container">
 
-      {/* MOBILE MENU ICON */}
-      <div className="menu-icon" onClick={() => setMenuOpen(!menuOpen)}>
-        {menuOpen ? "✕" : "☰"}
+        {/* LOGO */}
+        <Link
+          to="/"
+          className="logo"
+          onClick={closeMenu}
+        >
+
+          <img
+            src={logo}
+            alt="Global Educational Academy"
+          />
+
+          <div className="logo-text">
+
+            <h1>Global Educational</h1>
+
+            <span>Academy</span>
+
+          </div>
+
+        </Link>
+
+        {/* NAVIGATION */}
+        <nav
+          className={`nav-links ${
+            menuOpen ? "active" : ""
+          }`}
+        >
+
+          <NavLink to="/">
+            Home
+          </NavLink>
+
+          <NavLink to="/about">
+            About
+          </NavLink>
+
+          <NavLink to="/academics">
+            Academics
+          </NavLink>
+
+          <NavLink to="/classes">
+            Classes
+          </NavLink>
+
+          <NavLink to="/admissions">
+            Admissions
+          </NavLink>
+
+          <NavLink to="/gallery">
+            Gallery
+          </NavLink>
+
+          <NavLink to="/contact">
+            Contact
+          </NavLink>
+
+          {/* ADMIN LOGIN */}
+          <NavLink
+            to="/login"
+            className="admin-btn"
+          >
+
+            <FaUserShield />
+
+            Admin Login
+
+          </NavLink>
+
+        </nav>
+
+        {/* MOBILE ICON */}
+        <button
+          className="menu-icon"
+          onClick={() =>
+            setMenuOpen(!menuOpen)
+          }
+        >
+
+          {menuOpen ? (
+            <FaTimes />
+          ) : (
+            <FaBars />
+          )}
+
+        </button>
+
       </div>
 
     </header>
+
   );
 }

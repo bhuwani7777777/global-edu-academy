@@ -1,8 +1,3 @@
-/* =========================================
-   GLOBAL EDUCATIONAL ACADEMY - NAVBAR
-   PREMIUM SCHOOL WEBSITE NAVBAR UI
-========================================= */
-
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap");
 
 *{
@@ -11,22 +6,56 @@
   box-sizing: border-box;
 }
 
+html{
+  scroll-behavior: smooth;
+}
+
 body{
   font-family: "Poppins", sans-serif;
   overflow-x: hidden;
+  background: #020617;
 }
 
-/* =========================
-   NAVBAR MAIN
-========================= */
+/* =========================================
+   PREMIUM NAVBAR
+========================================= */
 
 .navbar{
   position: sticky;
   top: 0;
-  z-index: 1000;
+  z-index: 9999;
 
   width: 100%;
-  height: 92px;
+
+  background:
+    rgba(2, 6, 23, 0.72);
+
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+
+  border-bottom:
+    1px solid rgba(255,255,255,0.08);
+
+  transition: all 0.4s ease;
+}
+
+/* SCROLL EFFECT */
+
+.navbar.scrolled{
+  background:
+    rgba(2, 6, 23, 0.92);
+
+  box-shadow:
+    0 15px 45px rgba(0,0,0,0.45);
+}
+
+/* =========================================
+   TOPBAR
+========================================= */
+
+.topbar{
+  width: 100%;
+  height: 45px;
 
   display: flex;
   align-items: center;
@@ -36,30 +65,68 @@ body{
 
   background:
     linear-gradient(
-      135deg,
-      rgba(2, 6, 23, 0.97),
-      rgba(15, 23, 42, 0.96)
+      90deg,
+      #0f172a,
+      #111827,
+      #1e293b
     );
 
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-
-  border-bottom: 1px solid rgba(255,255,255,0.08);
-
-  box-shadow:
-    0 8px 30px rgba(0,0,0,0.25);
+  border-bottom:
+    1px solid rgba(255,255,255,0.05);
 }
 
-/* =========================
+.topbar-left,
+.topbar-right{
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.topbar span{
+  color: #cbd5e1;
+
+  font-size: 0.82rem;
+  font-weight: 500;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  transition: 0.3s ease;
+}
+
+.topbar span:hover{
+  color: #38bdf8;
+}
+
+/* =========================================
+   NAVBAR CONTAINER
+========================================= */
+
+.navbar-container{
+  width: 100%;
+  height: 92px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 7%;
+}
+
+/* =========================================
    LOGO
-========================= */
+========================================= */
 
 .logo{
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 16px;
 
   text-decoration: none;
+
+  position: relative;
+
   transition: 0.4s ease;
 }
 
@@ -72,23 +139,27 @@ body{
 .logo img{
   width: 72px;
   height: 72px;
+
   object-fit: cover;
 
-  border-radius: 18px;
-
-  border: 2px solid rgba(56, 189, 248, 0.5);
+  border-radius: 22px;
 
   background: #fff;
 
-  box-shadow:
-    0 0 20px rgba(56, 189, 248, 0.35),
-    0 0 40px rgba(56, 189, 248, 0.15);
+  border:
+    2px solid rgba(56,189,248,0.5);
 
-  transition: 0.4s ease;
+  box-shadow:
+    0 0 18px rgba(56,189,248,0.35),
+    0 0 40px rgba(56,189,248,0.15);
+
+  transition: 0.5s ease;
 }
 
 .logo:hover img{
-  transform: rotate(-4deg) scale(1.05);
+  transform:
+    rotate(-5deg)
+    scale(1.06);
 }
 
 /* LOGO TEXT */
@@ -101,36 +172,38 @@ body{
 .logo-text h1{
   color: #ffffff;
 
-  font-size: 1.25rem;
+  font-size: 1.35rem;
   font-weight: 700;
 
-  letter-spacing: 0.5px;
   line-height: 1.1;
+
+  letter-spacing: 0.5px;
 }
 
 .logo-text span{
   color: #38bdf8;
 
-  font-size: 0.82rem;
-  font-weight: 500;
+  font-size: 0.74rem;
+  font-weight: 600;
 
-  letter-spacing: 1.5px;
+  letter-spacing: 3px;
+
   text-transform: uppercase;
 
-  margin-top: 3px;
+  margin-top: 5px;
 }
 
-/* =========================
-   NAVIGATION LINKS
-========================= */
+/* =========================================
+   NAV LINKS
+========================================= */
 
 .nav-links{
   display: flex;
   align-items: center;
-  gap: 30px;
+  gap: 34px;
 }
 
-/* LINK STYLE */
+/* LINK */
 
 .nav-links a{
   position: relative;
@@ -139,103 +212,136 @@ body{
 
   color: #e2e8f0;
 
-  font-size: 0.97rem;
+  font-size: 0.96rem;
   font-weight: 500;
 
-  transition: all 0.35s ease;
-}
-
-/* UNDERLINE EFFECT */
-
-.nav-links a::after{
-  content: "";
-
-  position: absolute;
-  left: 0;
-  bottom: -8px;
-
-  width: 0%;
-  height: 2px;
-
-  border-radius: 30px;
-
-  background: linear-gradient(
-    90deg,
-    #38bdf8,
-    #0ea5e9
-  );
+  letter-spacing: 0.2px;
 
   transition: 0.35s ease;
 }
 
-/* HOVER */
+/* HOVER EFFECT */
 
 .nav-links a:hover{
   color: #38bdf8;
   transform: translateY(-2px);
 }
 
-.nav-links a:hover::after{
+/* ANIMATED UNDERLINE */
+
+.nav-links a::before{
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  bottom: -10px;
+
+  width: 0%;
+  height: 2px;
+
+  border-radius: 50px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #38bdf8,
+      #2563eb
+    );
+
+  transition: 0.4s ease;
+}
+
+.nav-links a:hover::before{
   width: 100%;
 }
 
-/* ACTIVE LINK */
+/* ACTIVE */
 
 .nav-links .active{
   color: #38bdf8;
   font-weight: 600;
 }
 
-.nav-links .active::after{
+.nav-links .active::before{
   width: 100%;
 }
 
-/* =========================
+/* =========================================
    ADMIN BUTTON
-========================= */
+========================================= */
 
 .admin-btn{
-  padding: 11px 20px !important;
+  padding: 12px 22px !important;
 
   border-radius: 50px;
 
   background:
     linear-gradient(
       135deg,
-      #38bdf8,
-      #2563eb
+      #0ea5e9,
+      #2563eb,
+      #4f46e5
     );
 
-  color: #ffffff !important;
+  color: white !important;
 
   font-weight: 600 !important;
 
   box-shadow:
-    0 8px 24px rgba(37, 99, 235, 0.35);
+    0 10px 30px rgba(37,99,235,0.35);
 
-  transition: 0.4s ease !important;
+  overflow: hidden;
+
+  position: relative;
+
+  transition: 0.45s ease !important;
+}
+
+/* SHINE EFFECT */
+
+.admin-btn::after{
+  content: "";
+
+  position: absolute;
+
+  top: -120%;
+  left: -40%;
+
+  width: 40px;
+  height: 240%;
+
+  background:
+    rgba(255,255,255,0.28);
+
+  transform: rotate(25deg);
+
+  transition: 0.7s;
+}
+
+.admin-btn:hover::after{
+  left: 130%;
 }
 
 .admin-btn:hover{
-  transform: translateY(-3px) scale(1.04);
+  transform:
+    translateY(-4px)
+    scale(1.04);
 
   box-shadow:
-    0 12px 28px rgba(37, 99, 235, 0.55);
+    0 14px 40px rgba(37,99,235,0.55);
 }
 
-.admin-btn::after{
-  display: none;
-}
-
-/* =========================
+/* =========================================
    MENU ICON
-========================= */
+========================================= */
 
 .menu-icon{
   display: none;
 
   font-size: 2rem;
-  color: #ffffff;
+
+  color: white;
 
   cursor: pointer;
 
@@ -244,38 +350,44 @@ body{
 
 .menu-icon:hover{
   color: #38bdf8;
-  transform: scale(1.08);
+  transform: scale(1.1);
 }
 
-/* =========================
-   RESPONSIVE DESIGN
-========================= */
+/* =========================================
+   MOBILE NAVIGATION
+========================================= */
 
-@media (max-width: 992px){
+@media (max-width: 1100px){
 
-  .navbar{
+  .navbar-container{
+    padding: 0 5%;
+  }
+
+  .topbar{
     padding: 0 5%;
   }
 
   .menu-icon{
     display: block;
+    z-index: 10001;
   }
 
   .nav-links{
-    position: absolute;
+    position: fixed;
 
-    top: 92px;
+    top: 0;
     right: -100%;
 
-    width: 320px;
-    height: calc(100vh - 92px);
+    width: 340px;
+    height: 100vh;
 
     flex-direction: column;
     align-items: flex-start;
+    justify-content: flex-start;
 
-    gap: 24px;
+    padding: 120px 35px;
 
-    padding: 40px 30px;
+    gap: 28px;
 
     background:
       linear-gradient(
@@ -284,9 +396,13 @@ body{
         rgba(2,6,23,0.98)
       );
 
-    backdrop-filter: blur(18px);
+    backdrop-filter: blur(20px);
 
-    border-left: 1px solid rgba(255,255,255,0.08);
+    border-left:
+      1px solid rgba(255,255,255,0.06);
+
+    box-shadow:
+      -10px 0 35px rgba(0,0,0,0.4);
 
     transition: 0.45s ease;
   }
@@ -301,21 +417,26 @@ body{
   }
 
   .admin-btn{
-    margin-top: 12px;
     width: 100%;
     text-align: center;
+    justify-content: center;
+    margin-top: 10px;
   }
+
 }
 
-/* =========================
-   MOBILE DEVICES
-========================= */
+/* =========================================
+   TABLET
+========================================= */
 
-@media (max-width: 600px){
+@media (max-width: 768px){
 
-  .navbar{
+  .topbar{
+    display: none;
+  }
+
+  .navbar-container{
     height: 82px;
-    padding: 0 4%;
   }
 
   .logo img{
@@ -328,17 +449,46 @@ body{
   }
 
   .logo-text span{
-    font-size: 0.7rem;
+    font-size: 0.65rem;
+    letter-spacing: 2px;
   }
 
   .nav-links{
-    top: 82px;
     width: 100%;
-    right: -100%;
-    border-left: none;
+    padding: 110px 30px;
   }
 
-  .nav-links.active{
-    right: 0;
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 500px){
+
+  .navbar-container{
+    padding: 0 20px;
   }
+
+  .logo{
+    gap: 10px;
+  }
+
+  .logo img{
+    width: 54px;
+    height: 54px;
+  }
+
+  .logo-text h1{
+    font-size: 0.9rem;
+  }
+
+  .logo-text span{
+    font-size: 0.58rem;
+  }
+
+  .nav-links{
+    gap: 24px;
+  }
+
 }

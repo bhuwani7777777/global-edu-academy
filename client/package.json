@@ -30,10 +30,10 @@
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
-  "rules": {
-    "jsx-a11y/anchor-is-valid": "off"
-  }
-},
+    "rules": {
+      "jsx-a11y/anchor-is-valid": "off"
+    }
+  },
   "browserslist": {
     "production": [
       ">0.2%",

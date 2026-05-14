@@ -38,7 +38,7 @@ export default function Login() {
 
     try {
       const res = await axios.post(
-        "https://your-vercel-app.vercel.app/api/login",
+        "https://global-edu-academy-8uqb-ojv1ykili-bhuwani7777777s-projects.vercel.app/login",
         formData
       );
 

@@ -42,7 +42,7 @@ export default function Register() {
 
     try {
       const res = await axios.post(
-        "https://your-vercel-app.vercel.app/api/register",
+        "https://global-edu-academy-8uqb-ojv1ykili-bhuwani7777777s-projects.vercel.app/register",
         formData
       );
 
